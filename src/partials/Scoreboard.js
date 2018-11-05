@@ -18,7 +18,12 @@ export default class Scoreboard {
 			this.ball.direction = -this.ball.direction;
 			this.ball.reset();
 		}
-		document.getElementById('svgContainer').innerHTML += `<text x="${this.boardWidth/4 - 30}" y="${this.boardHeight/2 + 30}" font-size="100px" fill="white">${this.scoreLeft}</text>`
-		document.getElementById('svgContainer').innerHTML += `<text x="${(this.boardWidth/4)*3 - 30}" y="${this.boardHeight/2 + 30}" font-size="100px" fill="white">${this.scoreRight}</text>`
+		document.getElementById('svgContainer').innerHTML += `<text x="${this.boardWidth/4}" y="${this.boardHeight/2}" alignment-baseline="central" text-anchor="middle" font-size="100px" fill="white">${this.scoreLeft}</text>`
+		document.getElementById('svgContainer').innerHTML += `<text x="${(this.boardWidth/4)*3}" y="${this.boardHeight/2}" alignment-baseline="central" text-anchor="middle" font-size="100px" fill="white">${this.scoreRight}</text>`
+	}
+
+	drawWinner(winner) {
+		document.getElementById('svgContainer').innerHTML += `<rect x="0" y="${this.boardHeight/2 - 50}" width="${this.boardWidth}px" height="100px" fill="black" opacity="0.5" />`;
+		document.getElementById('svgContainer').innerHTML += `<text x="${this.boardWidth/2}" y="${this.boardHeight/2}" alignment-baseline="central" text-anchor="middle" font-size="80px" fill="white">${winner} Wins!</text>`;
 	}
 }

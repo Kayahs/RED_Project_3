@@ -13,7 +13,7 @@ export default class Paddle {
 			this.xpos = this.boardWidth - this.width - offset;
 		}
 
-		this.ypos = this.boardHeight / 2 - this.height / 2;	
+		this.reset();
 
 		document.addEventListener('keydown', event => {
 			switch(event.key) {
@@ -30,7 +30,7 @@ export default class Paddle {
 					}
 					break;
 				case ' ':
-					this.paused = (this.paused) ? this.paused = false : this.paused = true;
+					this.paused = !this.paused;
 			}
 		});
 	}
@@ -41,6 +41,10 @@ export default class Paddle {
 		let topY = this.ypos;
 		let bottomY = this.ypos + this.height;
 		return [leftX, rightX, topY, bottomY];
+	}
+
+	reset() {
+		this.ypos = this.boardHeight / 2 - this.height / 2;
 	}
 
 	draw() {

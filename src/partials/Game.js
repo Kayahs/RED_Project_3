@@ -11,20 +11,19 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.isPaused = false;
+		this.gameOver = false;
+		this.limit = 9;
 		this.board = new Board(width, height);
 		this.paddleLeft = new Paddle(this.board, 20, 100, 10, true, KEYS.a, KEYS.z, this.isPaused);
 		this.paddleRight = new Paddle(this.board, 20, 100, 10, false, KEYS.up, KEYS.down, this.isPaused);
 		this.ball = new Ball(this.board, 8, this.paddleLeft, this.paddleRight);
 		this.scoreboard = new Scoreboard(this.ball, this.board);
 		document.addEventListener('keydown', event => {
-			if (event.key === KEYS.spaceBar) {
-				if (this.isPaused){
-					this.isPaused = false;
-				} else {
-					this.isPaused = true;
-				}
+			if (event.key === KEYS.spaceBar && !this.gameOver) {
+				this.isPaused = !this.isPaused;
 			}
 		});
+		this.pong4 = new Audio('../../public/sounds/pong-04.wav');
 	}
 
 	render() {
@@ -35,6 +34,18 @@ export default class Game {
 			this.paddleLeft.draw();
 			this.paddleRight.draw();
 			this.scoreboard.draw();
+			if (this.scoreboard.scoreLeft > this.limit) {
+				this.scoreboard.drawWinner("Player One");
+				this.isPaused = !this.isPaused;
+				this.gameOver = true;
+				this.pong4.play();
+			}
+			if (this.scoreboard.scoreRight > this.limit) {
+				this.scoreboard.drawWinner("Player Two");
+				this.isPaused = !this.isPaused;
+				this.gameOver = true;
+				this.pong4.play();
+			}
 		}
 	}
 
