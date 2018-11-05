@@ -9,16 +9,16 @@ export default class Scoreboard {
 
 	draw() {
 		if(this.ball.xpos - this.ball.radius < 0) {
-			this.scoreLeft++;
-			this.ball.direction = -this.ball.direction;
-			this.ball.reset();
-		}
-		if (this.ball.xpos + this.ball.radius > this.boardWidth) {
 			this.scoreRight++;
 			this.ball.direction = -this.ball.direction;
 			this.ball.reset();
 		}
-		console.log(`Left Teams Score is ${this.scoreLeft}.`);
-		console.log(`Right Teams Score is ${this.scoreRight}.`);
+		if (this.ball.xpos + this.ball.radius > this.boardWidth) {
+			this.scoreLeft++;
+			this.ball.direction = -this.ball.direction;
+			this.ball.reset();
+		}
+		document.getElementById('svgContainer').innerHTML += `<text x="${this.boardWidth/4 - 30}" y="${this.boardHeight/2 + 30}" font-size="100px" fill="white">${this.scoreLeft}</text>`
+		document.getElementById('svgContainer').innerHTML += `<text x="${(this.boardWidth/4)*3 - 30}" y="${this.boardHeight/2 + 30}" font-size="100px" fill="white">${this.scoreRight}</text>`
 	}
 }
