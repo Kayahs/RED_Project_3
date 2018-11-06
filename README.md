@@ -1,6 +1,6 @@
 # Pong Game
 
-A basic pong game using SVGs.
+A basic pong game using SVGs. Some of the troubles for the project came from getting the svgs to draw and getting the classes to work as intended with the different variables.
 
 ## Setup
 

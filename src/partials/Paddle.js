@@ -1,5 +1,6 @@
 export default class Paddle {
 	constructor(board, width, height, offset, isLeft, up, down, paused) {
+		//initialize values
 		this.width = width;
 		this.height = height;
 		this.isLeft = isLeft;
@@ -7,6 +8,8 @@ export default class Paddle {
 		this.boardWidth = board.width;
 		this.boardHeight = board.height;
 		this.paused = paused;
+
+		//check if left or right paddle for x position
 		if(isLeft) {
 			this.xpos = offset;
 		} else {
@@ -16,6 +19,8 @@ export default class Paddle {
 		this.reset();
 
 		document.addEventListener('keydown', event => {
+			console.log(event);
+			//check for movement
 			switch(event.key) {
 				case up:
 					if (!this.paused) {
@@ -35,6 +40,7 @@ export default class Paddle {
 		});
 	}
 
+	//return edges of the paddle
 	coordinates() {
 		let leftX = this.xpos;
 		let rightX = this.xpos + this.width;
@@ -43,11 +49,14 @@ export default class Paddle {
 		return [leftX, rightX, topY, bottomY];
 	}
 
+	//reset paddle y position
 	reset() {
 		this.ypos = this.boardHeight / 2 - this.height / 2;
 	}
 
+
 	draw() {
+		//draw paddle
 		document.getElementById('svgContainer').innerHTML += `<rect x="${this.xpos}" y="${this.ypos}" width="${this.width}px" height="${this.height}px" fill="white" id="paddle${(this.isLeft) ? 'Left' : 'Right'}" />`;
 	}
 }
