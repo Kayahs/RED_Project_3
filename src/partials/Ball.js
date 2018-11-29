@@ -10,9 +10,9 @@ export default class Ball {
 		this.reset(); //set initial x,y position and velocities
 
 		//load audios
-		this.pong1 = new Audio('../public/sounds/pong-01.wav');
-		this.pong2= new Audio('../public/sounds/pong-02.wav');
-		this.pong3 = new Audio('../public/sounds/pong-03.wav');
+		this.pong1 = new Audio('public/sounds/pong-01.wav');
+		this.pong2= new Audio('public/sounds/pong-02.wav');
+		this.pong3 = new Audio('public/sounds/pong-03.wav');
 	}
 
 	draw() {
